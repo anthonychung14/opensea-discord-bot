@@ -1,7 +1,7 @@
-import 'dotenv/config';
 import Discord, { TextChannel } from 'discord.js';
-import fetch from 'node-fetch';
+import 'dotenv/config';
 import { ethers } from "ethers";
+import fetch from 'node-fetch';
 
 const OPENSEA_SHARED_STOREFRONT_ADDRESS = '0x495f947276749Ce646f68AC8c248420045cb7b5e';
 
@@ -58,12 +58,12 @@ async function main() {
   const openSeaResponse = await fetch(
     "https://api.opensea.io/api/v1/events?" + params).then((resp) => resp.json());
     
-  return await Promise.all(
-    openSeaResponse?.asset_events?.reverse().map(async (sale: any) => {
-      const message = buildMessage(sale);
-      return channel.send(message)
-    })
-  );   
+    return await Promise.all(
+      openSeaResponse?.asset_events?.reverse().map(async (sale: any) => {
+        const message = buildMessage(sale);
+        return channel.send(message)
+      })
+    );   
 }
 
 main()
